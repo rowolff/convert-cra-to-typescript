@@ -2,6 +2,7 @@ import { apiFactory } from "./utils/api";
 import { useEffect, useState } from "react";
 import { StyledApp } from "./App.style";
 import { Post } from "./components/Post";
+import { Pagination } from "./components/Pagination";
 
 const api = apiFactory();
 
@@ -23,10 +24,19 @@ const App = () => {
   return (
     <StyledApp>
       <section>
-        <h1>Blog Posts</h1>
-        {posts.map((post) => (
-          <Post key={post.id} data={post} />
-        ))}
+        {posts.length > 0 ? (
+          <>
+            <Pagination
+              data={posts}
+              RenderComponent={Post}
+              title="Blog Posts"
+              pageLimit={5}
+              dataLimit={10}
+            />
+          </>
+        ) : (
+          <h1>No Posts to display</h1>
+        )}
       </section>
     </StyledApp>
   );
