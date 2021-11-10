@@ -1,4 +1,3 @@
-import "./App.css";
 import { apiFactory } from "./utils/api";
 import { useEffect, useState } from "react";
 import { StyledApp } from "./App.style";
