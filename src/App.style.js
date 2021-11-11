@@ -17,3 +17,7 @@ export const StyledApp = styled.div`
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 `;
+
+export const Posts = styled.div`
+  width: 85%;
+`;

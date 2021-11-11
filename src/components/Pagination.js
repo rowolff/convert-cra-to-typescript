@@ -1,4 +1,29 @@
 import { useState } from "react";
+import styled from "styled-components";
+
+const PaginationButton = styled.button`
+  background: #fff;
+  border: none;
+  padding: 10px;
+  font-size: calc(${(props) => (props.active ? "14px" : "10px")} + 2vmin);
+  font-weight: ${(props) => (props.active ? "bold" : "normal")};
+  color: ${(props) => {
+    if (props.disabled) return "#ccc";
+    return props.active ? "black" : "#282c34";
+  }};
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  margin: 0 10px;
+  cursor: pointer;
+  ${(props) => (props.disabled ? "pointer-events: none" : null)}
+  ${(props) => (props.disabled ? "box-shadow: none" : null)}
+`;
+
+const PostList = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+`;
 
 export const Pagination = ({
   data,
@@ -35,51 +60,43 @@ export const Pagination = ({
   };
 
   return (
-    <div>
+    <>
       <h1>{title}</h1>
-
-      {/* show the pagiantion
-        it consists of next and previous buttons
-        along with page numbers, in our case, 5 page
-        numbers at a time
-      */}
-      <div className="pagination">
+      <div>
         {/* previous button */}
-        <button
+        <PaginationButton
           onClick={goToPreviousPage}
-          className={`prev ${currentPage === 1 ? "disabled" : ""}`}
+          disabled={currentPage === 1}
         >
           prev
-        </button>
+        </PaginationButton>
 
         {/* show page numbers */}
         {getPaginationGroup().map((item, index) => (
-          <button
+          <PaginationButton
             key={index}
             onClick={changePage}
-            className={`paginationItem ${
-              currentPage === item ? "active" : null
-            }`}
+            active={currentPage === item}
           >
             <span>{item}</span>
-          </button>
+          </PaginationButton>
         ))}
 
         {/* next button */}
-        <button
+        <PaginationButton
           onClick={goToNextPage}
-          className={`next ${currentPage === pages ? "disabled" : ""}`}
+          disabled={currentPage === pages}
         >
           next
-        </button>
+        </PaginationButton>
       </div>
 
-      {/* show the posts, 10 posts at a time */}
-      <div className="dataContainer">
+      {/* show the posts */}
+      <PostList>
         {getPaginatedData().map((d, idx) => (
           <RenderComponent key={idx} data={d} />
         ))}
-      </div>
-    </div>
+      </PostList>
+    </>
   );
 };

@@ -1,6 +1,6 @@
 import { apiFactory } from "./utils/api";
 import { useEffect, useState } from "react";
-import { StyledApp } from "./App.style";
+import { StyledApp, Posts } from "./App.style";
 import { Post } from "./components/Post";
 import { Pagination } from "./components/Pagination";
 
@@ -23,7 +23,7 @@ const App = () => {
 
   return (
     <StyledApp>
-      <section>
+      <Posts>
         {posts.length > 0 ? (
           <>
             <Pagination
@@ -37,7 +37,7 @@ const App = () => {
         ) : (
           <h1>No Posts to display</h1>
         )}
-      </section>
+      </Posts>
     </StyledApp>
   );
 };
