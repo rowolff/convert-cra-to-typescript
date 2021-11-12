@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React from "react";
 
 const StyledPost = styled.div`
   display: flex;
@@ -19,8 +20,18 @@ const Small = styled.small`
   color: #777;
 `;
 
-export const Post = (props) => {
-  const { id, title, body } = props.data;
+type Data = {
+  id: string;
+  title: string;
+  body: any;
+};
+
+type PostProps = {
+  data: Data;
+};
+
+export const Post: React.FC<PostProps> = ({ data }) => {
+  const { id, title, body } = data;
   return (
     <StyledPost>
       <Small>{id}</Small>
