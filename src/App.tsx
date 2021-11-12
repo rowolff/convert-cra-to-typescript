@@ -1,13 +1,13 @@
 import { apiFactory } from "./utils/api";
 import { useEffect, useState } from "react";
 import { StyledApp, Posts } from "./App.style";
-import { Post } from "./components/Post";
+import { Post, PostData } from "./components/Post";
 import { Pagination } from "./components/Pagination";
 
 const api = apiFactory();
 
 const App = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<PostData[]>([]);
   const [error, setError] = useState("");
 
   useEffect(() => {

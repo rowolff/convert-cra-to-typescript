@@ -20,14 +20,15 @@ const Small = styled.small`
   color: #777;
 `;
 
-type Data = {
+export type PostData = {
+  userId?: string;
   id: string;
   title: string;
   body: any;
 };
 
 type PostProps = {
-  data: Data;
+  data: PostData;
 };
 
 export const Post: React.FC<PostProps> = ({ data }) => {
